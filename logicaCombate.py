@@ -21,6 +21,7 @@ class personaje():
         self.fuerza = pfue
         self.destreza = pdes
         self.agilidad = pagi
+        self.armaEquipada = False
 
     def recibirDaño (self, pfue, pdes, pagi, efue, edes, eagi, pvid, edañ):
         ataque = undseis
@@ -42,18 +43,18 @@ class personaje():
             defensa = undseis
             if ataque > defensa:
                 self.vida = pvid - edañ
+ 
+    def equiparArma (self, arma):
+        self.armaEquipada = True
+        self.fuerza = self.fuerza + arma.fuerza
+        self.destreza = self.destreza + arma.destreza
+        self.agilidad = self.agilidad + arma.agilidad
     
-    def equiparArma (self, pfue, pdes, pagi, afue, ades, aagi):
-        armaEquipada = True
-        self.fuerza = pfue + afue
-        self.destreza = pdes + ades
-        self.agilidad = pagi + aagi
-    
-    def desequiparArma (self, pfue, pdes, pagi, afue, ades, aagi):
-        armaEquipada = False
-        self.fuerza = pfue - afue
-        self.destreza = pdes - ades
-        self.agilidad = pagi - aagi
+    def desequiparArma (self, arma):
+        self.armaEquipada = False
+        self.fuerza = self.fuerza - arma.fuerza
+        self.destreza = self.destreza - arma.destreza
+        self.agilidad = self.agilidad - arma.agilidad
 
 pj = personaje(1, 10, 3, 3, 3)
 
@@ -93,7 +94,7 @@ goblin = enemigo(2, 1, 2, 3, 5)
 
 iniciarPartida = True
 
-while iniciarPartida == True:
+while iniciarPartida:
     print("Bienvenido a Land of RPG: ¿Quieres iniciar una nueva partida? (y/n)")
     iP = input(">")
     if iP == "y":
@@ -103,5 +104,34 @@ while iniciarPartida == True:
         pj = personaje(1, 10, 3, 3, 3)
         print("Bienvenido " + name + " estas son tus estadisticas: ")
         print("Nivel: " + str(pj.nivel) + ". Vida: " + str(pj.vida) + ". Fuerza: " + str(pj.fuerza) + ". Destreza: " + str(pj.destreza) + ". Agilidad: " + str(pj.agilidad) + ".")
+
+
+    while not pj.armaEquipada:
+        print("Elije un arma: Espada, Espada ropera, Gladio, Florete.")
+        armavar = input(">")
+        armavar = armavar.lower()
+        if armavar == "espada":
+            pj.equiparArma(espada)
+        elif armavar == "espada ropera":
+            pj.equiparArma(espadaRopera)
+        elif armavar == "gladio":
+            pj.equiparArma(gladio)
+        elif armavar == "florete":
+            pj.equiparArma(florete)
+        print("Has elegido: " + str(armavar) + ". " + "Tus estadisticas son: Fuerza: " + str(pj.fuerza) + ". Destreza: " + str(pj.destreza) + ". Agilidad: " + str(pj.agilidad) + ".")
+        print("¿Estas seguro? (y/n)")
+        eleccionarma = input(">")
+        eleccionarma = eleccionarma.lower()
+        if eleccionarma == "n":
+            if armavar == "espada":
+                pj.desequiparArma(espada)
+            elif armavar == "espada ropera":
+                pj.desequiparArma(espadaRopera)
+            elif armavar == "gladio":
+                pj.desequiparArma(gladio)
+            elif armavar == "florete":
+                pj.desequiparArma(florete)
+
+
     else:
         iniciarPartida = False
