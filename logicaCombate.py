@@ -2,16 +2,18 @@ import random
 undseis = random.randrange (1, 7)
 
 class arma():
-    def __init__ (self, afue, ades, aagi, adañ):
+    def __init__ (self, n, afue, ades, aagi, adañ):
+        self.nombre = n
         self.fuerza = afue
         self.destreza = ades
         self.agilidad = aagi
         self.daño = adañ
 
-espada = arma(0, 1, 0, 1)
-espadaRopera = arma(-1, 2, 0, 1)
-gladio = arma(0, 2, -1, 1)
-florete = arma(-2, 3, 0, 1)
+espada = arma("espada", 0, 1, 0, 1)
+espadaRopera = arma("espada ropera",-1, 2, 0, 1)
+gladio = arma("gladio", 0, 2, -1, 1)
+florete = arma("florete", -2, 3, 0, 1)
+listaArmas = (espada, espadaRopera, gladio, florete)
 
 
 class personaje():
@@ -110,27 +112,26 @@ while iniciarPartida:
         print("Elije un arma: Espada, Espada ropera, Gladio, Florete.")
         armavar = input(">")
         armavar = armavar.lower()
-        if armavar == "espada":
-            pj.equiparArma(espada)
-        elif armavar == "espada ropera":
-            pj.equiparArma(espadaRopera)
-        elif armavar == "gladio":
-            pj.equiparArma(gladio)
-        elif armavar == "florete":
-            pj.equiparArma(florete)
-        print("Has elegido: " + str(armavar) + ". " + "Tus estadisticas son: Fuerza: " + str(pj.fuerza) + ". Destreza: " + str(pj.destreza) + ". Agilidad: " + str(pj.agilidad) + ".")
-        print("¿Estas seguro? (y/n)")
-        eleccionarma = input(">")
-        eleccionarma = eleccionarma.lower()
-        if eleccionarma == "n":
-            if armavar == "espada":
-                pj.desequiparArma(espada)
-            elif armavar == "espada ropera":
-                pj.desequiparArma(espadaRopera)
-            elif armavar == "gladio":
-                pj.desequiparArma(gladio)
-            elif armavar == "florete":
-                pj.desequiparArma(florete)
+
+#Falta esto :p
+        for i in listaArmas:
+            if armavar == i.nombre:
+                pj.equiparArma(i)
+
+       
+        # print("Has elegido: " + str(armavar) + ". " + "Tus estadisticas son: Fuerza: " + str(pj.fuerza) + ". Destreza: " + str(pj.destreza) + ". Agilidad: " + str(pj.agilidad) + ".")
+        # print("¿Estas seguro? (y/n)")
+        # eleccionarma = input(">")
+        # eleccionarma = eleccionarma.lower()
+        # if eleccionarma == "n":
+        #     if armavar == "espada":
+        #         pj.desequiparArma(espada)
+        #     elif armavar == "espada ropera":
+        #         pj.desequiparArma(espadaRopera)
+        #     elif armavar == "gladio":
+        #         pj.desequiparArma(gladio)
+        #     elif armavar == "florete":
+        #         pj.desequiparArma(florete)
 
 
     else:
