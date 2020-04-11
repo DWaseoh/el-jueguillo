@@ -1,4 +1,6 @@
 import random
+from tuplas import listaArmas
+
 undseis = random.randrange (1, 7)
 
 class arma():
@@ -9,13 +11,13 @@ class arma():
         self.agilidad = aagi
         self.daño = adañ
 
-espada = arma("espada", 0, 1, 0, 1)
-espadaRopera = arma("espada ropera",-1, 2, 0, 1)
-gladio = arma("gladio", 0, 2, -1, 1)
-florete = arma("florete", -2, 3, 0, 1)
-listaArmas = (espada, espadaRopera, gladio, florete)
-
-
+listaArmas = (
+    arma("espada", 0, 1, 0, 1), 
+    arma("espada ropera",-1, 2, 0, 1), 
+    arma("gladio", 0, 2, -1, 1), 
+    arma("florete", -2, 3, 0, 1)
+    )
+    
 class personaje():
     def __init__ (self, pniv, pvid, pfue, pdes, pagi):
         self.nivel = pniv
