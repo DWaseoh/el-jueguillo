@@ -1,6 +1,5 @@
-from objects import personaje
-from objects import enemigo
-from tuplas import listaArmas
+import random
+undseis = random.randrange (1, 7)
 
 pj = personaje(1, 10, 3, 3, 3)
 araña = enemigo(5, 1, 2, 1, 6)
